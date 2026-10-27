@@ -15,55 +15,18 @@ The engine computes real-time synchronization using three core variables:
 2. Temporal Latency: Measures the response window (in seconds) of the human expert calibrating the boundary.
 3. Boundary Integrity: Evaluates whether safety guardrails and system parameters remain intact during context shifts.
 
-## Implementation (observer.py)
+## Implementation Files
 
-Below is the complete Python execution engine for real-time telemetry processing:
+- **observer.py**: Contains the core Python execution engine for real-time telemetry processing and scoring.
+- **SKILL.md**: Platform integration guide for Lounge.ai.
 
-```python
-"""
-GTNeRa® XEO Physics: Real-Time Observer Engine
-Core logic for dynamic temporal telemetry and contextual boundary tracking.
-"""
+## Quick Start
 
-from dataclasses import dataclass
-from typing import Dict, Any
+1. Clone the repository:
+   git clone https://github.com/YOUR_USERNAME/xeo-realtime-observer.git
+2. Run the engine telemetry test:
+   python observer.py
 
-@dataclass
-class SystemTelemetry:
-    context_drift: float      # External environment shift (0.0 to 1.0)
-    response_latency: float   # Operator response lag in seconds
-    boundary_integrity: bool  # Contextual safety dome integrity
+## Governance & License
 
-class RealTimeObserver:
-    def __init__(self, optimal_window: float = 60.0):
-        self.optimal_window = optimal_window
-
-    def evaluate_state(self, telemetry: SystemTelemetry) -> Dict[str, Any]:
-        score = 0.0
-        
-        # 1. Temporal responsiveness evaluation
-        if telemetry.response_latency <= self.optimal_window:
-            latency_factor = 1.0 - (telemetry.response_latency / self.optimal_window)
-            score += 50 * latency_factor
-
-        # 2. Boundary dome maintenance under context drift
-        if telemetry.boundary_integrity and telemetry.context_drift > 0.4:
-            score += 50
-
-        unlocked = score >= 80.0
-        
-        return {
-            "observer_score": round(score, 2),
-            "badge": "The Real-Time Observer",
-            "status": "synchronized" if unlocked else "lagging",
-            "telemetry_active": True
-        }
-
-if __name__ == "__main__":
-    engine = RealTimeObserver(optimal_window=45.0)
-    state = SystemTelemetry(
-        context_drift=0.75, 
-        response_latency=15.0, 
-        boundary_integrity=True
-    )
-    print(engine.evaluate_state(state))
+Developed under the GTNeRa XEO Physics Framework. Dedicated to human-centered AI governance, dynamic risk calibration, and deterministic boundary integrity.
