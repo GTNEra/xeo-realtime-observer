@@ -1,28 +1,21 @@
-# GTNeRa® XEO Physics — Real-Time Observer Engine 📡👁️
+# GTNeRa XEO Physics - Real-Time Observer Engine
 
 A dynamic telemetry and synchronization framework designed to evaluate human-AI context drift and boundary integrity in real time.
 
----
-
-## 💡 Overview
+## Overview
 
 Traditional AI safety architectures rely on static, hardcoded constraints. However, real-world operational environments are dynamic—risk parameters shift based on temporal urgency, jurisdiction, cultural context, and task domain.
 
-The **GTNeRa® XEO Physics Real-Time Observer** replaces static hard-blocking with continuous telemetry. It measures human-in-the-loop synchronization and calculates contextual safety guardrails ("the dome") dynamically at specific nodes in time.
+The GTNeRa XEO Physics Real-Time Observer replaces static hard-blocking with continuous telemetry. It measures human-in-the-loop synchronization and calculates contextual safety guardrails dynamically at specific nodes in time.
 
----
-
-## ⚙️ Core Telemetry Metrics
+## Core Telemetry Metrics
 
 The engine computes real-time synchronization using three core variables:
+1. Context Drift Coefficient: Quantifies external environment shifts and dynamic variance.
+2. Temporal Latency: Measures the response window (in seconds) of the human expert calibrating the boundary.
+3. Boundary Integrity: Evaluates whether safety guardrails and system parameters remain intact during context shifts.
 
-1. **Context Drift Coefficient ($\Delta C \in [0.0, 1.0]$):** Quantifies external environment shifts and dynamic variance.
-2. **Temporal Latency ($\tau$):** Measures the response window (in seconds) of the human expert calibrating the boundary.
-3. **Boundary Integrity ($B_i \in \{0, 1\}$):** Evaluates whether safety guardrails and system parameters remain intact during context shifts.
-
----
-
-## 🐍 Implementation (`observer.py`)
+## Implementation (observer.py)
 
 Below is the complete Python execution engine for real-time telemetry processing:
 
@@ -67,7 +60,6 @@ class RealTimeObserver:
         }
 
 if __name__ == "__main__":
-    # Test execution run
     engine = RealTimeObserver(optimal_window=45.0)
     state = SystemTelemetry(
         context_drift=0.75, 
